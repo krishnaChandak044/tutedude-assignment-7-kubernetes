@@ -1,3 +1,5 @@
 # Assignment 7 local Kubernetes report
 
-Kubernetes Deployments and Services, probes, and local image names are provided in `../k8s`. Docker is available. Minikube is absent in the workstation; therefore the required cluster run, pod/service status and runtime screenshot could not be captured. Start Minikube, load the two built images, apply `kubectl apply -k k8s`, wait for rollout and capture `kubectl get pods,svc` plus the app URL before final evidence submission.
+Deployed the previous assignment’s Flask backend and Express frontend locally in Minikube using Docker-built images. `k8s/backend.yaml` and `k8s/frontend.yaml` define a Deployment and Service for each application, plus readiness/liveness probes. The frontend service is NodePort 30080; the backend is ClusterIP on 5000.
+
+Evidence: both pods reached Running/1-of-1 Ready, `kubectl get pods,svc -o wide` captured both Services, and an HTTP request to the frontend’s `/api/health` returned the Flask backend response. Evidence files are in `../evidence`. The cluster profile was stopped then removed after capturing evidence to free local disk; `README.md` has recreation commands.

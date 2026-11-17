@@ -1,0 +1,14 @@
+$ kubectl get deployments,pods,svc -o wide
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                         SELECTOR
+deployment.apps/express-frontend   1/1     1            1           31s   express      tutedude-node-frontend:local   app=express-frontend
+deployment.apps/flask-backend      1/1     1            1           31s   flask        tutedude-flask-backend:local   app=flask-backend
+
+NAME                                    READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+pod/express-frontend-79d656668d-6zscr   1/1     Running   0          31s   10.244.0.4   minikube   <none>           <none>
+pod/flask-backend-6b85b88b54-rmxvb      1/1     Running   0          31s   10.244.0.3   minikube   <none>           <none>
+
+NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+service/backend      ClusterIP   10.106.59.43   <none>        5000/TCP         31s   app=flask-backend
+service/frontend     NodePort    10.98.19.127   <none>        3000:30080/TCP   31s   app=express-frontend
+service/kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP          71s   <none>
+Minikube cluster stopped after capturing deployment evidence.
